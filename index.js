@@ -61,6 +61,11 @@ class Robot {
     }
   }
 
+  /**
+   * Parse the cleaned up lines.
+   * @param {string[]} lines The lines to parse.
+   * @param {function} cb The callback.
+   */
   _parseLines (lines, cb) {
     let count = 0;
     let rows = lines.length;
@@ -83,8 +88,16 @@ class Robot {
         
         count++;
         if (count >= rows) {
+
+          /**
+           * This breaks the result down into a smaller set of rulesets using the user-agent lines.
+           */
           let rulesets = lines.join('\n').split(/[Uu]ser-[aA]gent( ?):( ?)/);
+
           this._parseRulesets(rulesets.map(function(value) {
+            /**
+             * Map rulesets to an object of {title: string, rules: string[]}
+             */
             let newValue = value.trim().split('\n');
             if (newValue[0] == '') {
               return null;
@@ -94,6 +107,9 @@ class Robot {
             newValue.shift();
             parsed.rules = newValue;
             return parsed;
+            /**
+             * Filter null results.
+             */
           }).filter(function(val) {
             return val;
           }), cb);
@@ -102,6 +118,11 @@ class Robot {
     }
   }
 
+  /**
+   * Type of line...
+   * @param {string} starter The start of the line that you'd like to understand.
+   * @returns {string} The nice, machine usable descriptor of the line.
+   */
   _lineStarters (starter) {
     switch (starter.toLowerCase()) {
       case 'user-agent':
@@ -118,10 +139,14 @@ class Robot {
     }
   }
 
+  /**
+   * Further parse the individual rulesets to a friendly, usable set of rules.
+   * @param {string[]} lines The lines to parse.
+   * @param {function} cb Callback.
+   */
   _parseRulesets (lines, cb) {
     var result = {};
     
-
     let sets = 0;
     for (let x in lines) {
       result[lines[x].title] = { allow: [], disallow: [] };
@@ -152,5 +177,6 @@ class Robot {
 
 /**
  * Export Modules 
+ * Return an instance of the Robot class instead of the class itself.
  */
 module.exports = new Robot();

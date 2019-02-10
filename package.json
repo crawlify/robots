@@ -1,6 +1,6 @@
 {
   "name": "@crawlify.io/robots",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Parses robots.txt files to provide meaningful, useful output as well as reporting syntax errors.",
   "main": "index.js",
   "scripts": {
