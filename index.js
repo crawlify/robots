@@ -7,7 +7,6 @@ class Robot {
     this.sitemaps = [];
     this.rulesets = [];
     this.unknown = [];
-    this.raw = '';
   }
   
   /**
@@ -49,7 +48,6 @@ class Robot {
     var rows = 0;
     for (let x in inputLine) {
       let line = inputLine[x].trim();
-
       if (line !== '' && line[0] !== '#') {
         cleanInput[x] = line;
       }
@@ -84,7 +82,6 @@ class Robot {
         }
         
         count++;
-
         if (count >= rows) {
           let rulesets = lines.join('\n').split(/[Uu]ser-[aA]gent( ?):( ?)/);
           this._parseRulesets(rulesets.map(function(value) {
@@ -156,6 +153,4 @@ class Robot {
 /**
  * Export Modules 
  */
-module.exports = {
-  Robot
-};
+module.exports = new Robot();
