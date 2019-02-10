@@ -1,5 +1,5 @@
 {
-  "name": "robots",
+  "name": "@crawlify.io/robots",
   "version": "1.0.0",
   "description": "Parses robots.txt files to provide meaningful, useful output as well as reporting syntax errors.",
   "main": "index.js",
@@ -27,5 +27,6 @@
   "homepage": "https://github.com/crawlify/robots#readme",
   "dependencies": {
     "request": "^2.88.0"
-  }
+  },
+  "devDependencies": {}
 }
